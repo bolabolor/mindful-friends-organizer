@@ -3,7 +3,7 @@ package com.github.bolabolor.backend.security;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("mongoUsers")
+@Document("mongoUser")
 public record MongoUser(
         @Id
         String id,

@@ -1,5 +1,6 @@
 package com.github.bolabolor.backend.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -7,12 +8,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import java.util.Collections;
 @Service
+@RequiredArgsConstructor
 public class MongoUsersDetailsService implements UserDetailsService {
     private final MongoUserRepository mongoUserRepository;
-
-    public MongoUsersDetailsService(MongoUserRepository mongoUserRepository) {
-        this.mongoUserRepository = mongoUserRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
