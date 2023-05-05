@@ -29,10 +29,6 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
-            /*    .and()
-                .formLogin()
-                .and()
-                .logout()*/
                 .and().build();
     }
     @Bean
