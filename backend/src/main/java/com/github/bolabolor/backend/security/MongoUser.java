@@ -16,4 +16,7 @@ public record MongoUser(
         @Size(min=4, max=60)
         String password
 ) {
+        public MongoUser(String username, String password) {
+                this(null, username, password);
+        }
 }

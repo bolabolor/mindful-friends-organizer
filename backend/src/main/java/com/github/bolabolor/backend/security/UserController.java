@@ -1,13 +1,21 @@
 package com.github.bolabolor.backend.security;
 
+import com.github.bolabolor.backend.model.MongoUserDTO;
+import com.github.bolabolor.backend.service.UserService;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/me")
     public String getMe(){
@@ -16,17 +24,14 @@ public class UserController {
                 .getAuthentication()
                 .getName();
     }
-    @Autowired
-    private MongoUserRepository mongoUserRepository;
 
     @PostMapping("/signup")
-    public String signup(@RequestBody MongoUser mongoUser){
-        if(mongoUserRepository.findMongoUserByUsername(mongoUser.username()) != null){
-            return "This user already exists";
-        }
-        mongoUserRepository.save(mongoUser);
-        return "User registered successfully";
+    public ResponseEntity<MongoUser> signup(@RequestBody MongoUserDTO mongoUserDTO) {
+        userService.signupMongoUser(mongoUserDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+
 
     @PostMapping("/login")
     public String login(){
