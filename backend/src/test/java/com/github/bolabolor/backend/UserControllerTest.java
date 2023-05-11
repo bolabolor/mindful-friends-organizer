@@ -27,6 +27,13 @@ class UserControllerTest {
                         .with(csrf()))
                 .andExpect(status().isOk());
     }
+    @Test
+    @WithMockUser(username = "testuser")
+    void expectUnsuccessfullLogin_whenUserIsUnauthorized() throws Exception {
+        mvc.perform(post("/api/users/login"))
+                .andExpect(status().isForbidden());
+    }
+
 
     @Test
     @DirtiesContext
@@ -62,5 +69,7 @@ class UserControllerTest {
         mvc.perform(post("/api/users/logout").with(csrf()))
                 .andExpect(status().isOk());
     }
+
+
 
 }

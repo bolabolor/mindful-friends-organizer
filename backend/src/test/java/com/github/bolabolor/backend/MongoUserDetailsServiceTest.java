@@ -32,23 +32,25 @@ class MongoUserDetailsServiceTest {
 
     @Test
     void expectSuccessfulUsername() {
-
+        //Given
         MongoUser mongoUser = new MongoUser(UUID.randomUUID().toString(),
                 "username", "password");
         when(mongoUserRepository.findMongoUserByUsername(mongoUser.username())).thenReturn(Optional.of(mongoUser));
-
+        //When
         detailsService.loadUserByUsername(mongoUser.username());
-
+        //Then
         verify(mongoUserRepository).findMongoUserByUsername(mongoUser.username());
 
     }
 
     @Test
     void expectUnsuccessfulUsername() {
-
+        //When
         when(mongoUserRepository.findMongoUserByUsername("username")).thenReturn(Optional.empty());
-
+        //Then
         assertThrows(UsernameNotFoundException.class, () -> detailsService.loadUserByUsername("username"));
     }
+
+
 
 }
