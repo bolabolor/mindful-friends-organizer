@@ -1,12 +1,22 @@
 import {FormEvent, useState} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-export default function LoginPage() {
+type Props = {
+    onLogin: (username: string, password: string) => Promise<void>
+}
+
+export default function LoginPage(props: Props) {
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const navigate = useNavigate()
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
+
+        props.onLogin(username, password)
+            .then(() => {navigate("/")});
+
 
         axios.post("/api/users/login", undefined, {auth: {username, password}})
             .then(response => {

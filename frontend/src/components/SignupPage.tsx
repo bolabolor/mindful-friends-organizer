@@ -8,7 +8,7 @@ export default function SignupPage() {
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
-        axios.post("/api/users/signup", undefined, {auth: {username, password}})
+        axios.post("/api/users/signup", {username, password})
             .then(response => {
                 console.log(response.data)
             })
