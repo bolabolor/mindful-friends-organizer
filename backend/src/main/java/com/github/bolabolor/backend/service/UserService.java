@@ -19,10 +19,11 @@ public class UserService {
 
         if (mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username()).isPresent()) {
             throw new IllegalArgumentException("The username already exists.");
-        } else {
-            String encodedPassword = encoder.encode(mongoUserDTO.password());
-            MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword);
-            return mongoUserRepository.save(encodedUser);
         }
+            
+        String encodedPassword = encoder.encode(mongoUserDTO.password());
+        MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword);
+        return mongoUserRepository.save(encodedUser);
+  
     }
 }
