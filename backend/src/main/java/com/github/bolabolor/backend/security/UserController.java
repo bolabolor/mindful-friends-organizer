@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<MongoUser> signup(@RequestBody MongoUserDTO mongoUserDTO) {
+    public ResponseEntity<MongoUserDTO> signup(@RequestBody MongoUserDTO mongoUserDTO) {
         userService.signupMongoUser(mongoUserDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
