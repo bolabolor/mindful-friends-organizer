@@ -33,8 +33,10 @@ class MongoUserDetailsServiceTest {
     @Test
     void expectSuccessfulUsername() {
         //Given
-        MongoUser mongoUser = new MongoUser(UUID.randomUUID().toString(),
-                "username", "password");
+        MongoUser mongoUser = new MongoUser(
+                UUID.randomUUID().toString(),
+                "username",
+                "password");
         when(mongoUserRepository.findMongoUserByUsername(mongoUser.username())).thenReturn(Optional.of(mongoUser));
         //When
         detailsService.loadUserByUsername(mongoUser.username());
