@@ -14,12 +14,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@DirtiesContext(classMode = DirtiesContext.ClassMode.BEFORE_EACH_TEST_METHOD)
 class UserControllerTest {
     @Autowired
     private MockMvc mvc;
 
     @Test
-    @DirtiesContext
     @WithMockUser
     void expectSuccessfulLogin() throws Exception {
         mvc.perform(post("/api/users/login")
@@ -33,10 +33,7 @@ class UserControllerTest {
         mvc.perform(post("/api/users/login"))
                 .andExpect(status().isForbidden());
     }
-
-
     @Test
-    @DirtiesContext
     void expectFailedLogin() throws Exception {
         mvc.perform(post("/api/users/login")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -45,7 +42,6 @@ class UserControllerTest {
     }
 
     @Test
-    @DirtiesContext
     @WithMockUser
     void expectGetMe_whenLoggedIn() throws Exception {
         mvc.perform(get("/api/users/me"))
@@ -53,7 +49,6 @@ class UserControllerTest {
     }
 
     @Test
-    @DirtiesContext
     void expectGetMe_whenNotLoggedIn() throws Exception {
         mvc.perform(get("/api/users/me").
                         contentType(MediaType.APPLICATION_JSON)
@@ -63,13 +58,9 @@ class UserControllerTest {
     }
 
     @Test
-    @DirtiesContext
     @WithMockUser
     void expectLogout() throws Exception {
         mvc.perform(post("/api/users/logout").with(csrf()))
                 .andExpect(status().isOk());
     }
-
-
-
 }

@@ -15,7 +15,6 @@ export default function SignupPage() {
             .catch(error => {
                 console.error(error);
             });
-
     }
 
     return (

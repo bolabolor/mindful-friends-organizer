@@ -47,5 +47,3 @@ public class UserController {
         SecurityContextHolder.clearContext();
     }
 }
-
-

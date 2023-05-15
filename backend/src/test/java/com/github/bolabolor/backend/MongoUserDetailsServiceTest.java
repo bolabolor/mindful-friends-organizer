@@ -29,7 +29,6 @@ class MongoUserDetailsServiceTest {
         detailsService = new MongoUsersDetailsService(mongoUserRepository);
     }
 
-
     @Test
     void expectSuccessfulUsername() {
         //Given
@@ -50,7 +49,4 @@ class MongoUserDetailsServiceTest {
         //Then
         assertThrows(UsernameNotFoundException.class, () -> detailsService.loadUserByUsername("username"));
     }
-
-
-
 }
