@@ -1,6 +1,5 @@
 package com.github.bolabolor.backend.security;
 
-import com.github.bolabolor.backend.model.MongoUserDTO;
 import com.github.bolabolor.backend.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
