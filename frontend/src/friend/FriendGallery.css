@@ -1,0 +1,9 @@
+.friend-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:  center;
+}
+
+.friend-gallery .friend-card {
+    margin: 12px;
+}

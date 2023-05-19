@@ -1,0 +1,17 @@
+.friend-circle {
+    width: 200px; /* Breite des Bildes */
+    height: 200px; /* Höhe des Bildes */
+    border-radius: 50%; /* Kreisförmiger Rand */
+    color: white;
+    overflow: hidden; /* Bild wird innerhalb des Kreises abgeschnitten */
+}
+
+.friend-circle img {
+    width: 100%; /* Volle Breite des Bildes */
+    height: 100%; /* Volle Höhe des Bildes */
+    object-fit: cover; /* Das Bild wird proportioniert skaliert */
+}
+
+.friend-card_name {
+    margin-bottom: 12px;
+}
