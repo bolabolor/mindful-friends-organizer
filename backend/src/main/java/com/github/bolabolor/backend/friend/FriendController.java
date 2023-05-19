@@ -1,6 +1,7 @@
 package com.github.bolabolor.backend.friend;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -11,11 +12,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/friend")
+@RequiredArgsConstructor
 public class FriendController {
+
     private final FriendService friendService;
-    FriendController(FriendService friendService){
-        this.friendService = friendService;
-    }
     @GetMapping
     List<Friend> getAll(){
         return friendService.getAll();
