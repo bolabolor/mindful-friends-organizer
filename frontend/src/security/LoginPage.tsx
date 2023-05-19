@@ -15,7 +15,10 @@ export default function LoginPage(props: Props) {
         event.preventDefault()
 
         props.onLogin(username, password)
-            .then(() => {navigate("/")});
+            .then(() => {navigate("/")})
+            .catch((reason) => {
+                console.error(reason)
+            })
 
 
         axios.post("/api/users/login", undefined, {auth: {username, password}})
