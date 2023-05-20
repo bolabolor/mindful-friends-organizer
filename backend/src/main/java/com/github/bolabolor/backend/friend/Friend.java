@@ -12,7 +12,7 @@ public record Friend (
     String name,
     String url)
 {
-    Friend(String name){
+    public Friend(String name){
         this(null, name, null);
     }
     public Friend withId(String id) {

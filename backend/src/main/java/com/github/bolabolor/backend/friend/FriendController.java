@@ -17,26 +17,26 @@ public class FriendController {
 
     private final FriendService friendService;
     @GetMapping
-    List<Friend> getAll(){
-        return friendService.getAll();
+    List<Friend> getAllFriends(){
+        return friendService.getAllFriends();
     }
     @PostMapping
-    Friend postFriend(@RequestPart("data") @Valid Friend friend, @RequestPart(name = "file", required = false) MultipartFile image) throws IOException{
-        return friendService.save(friend, image);
+    Friend addFriend(@RequestPart("data") @Valid Friend friend, @RequestPart(name = "file", required = false) MultipartFile image) throws IOException{
+        return friendService.addFriend(friend, image);
     }
     @GetMapping("{id}")
     Friend getFriendById(@PathVariable String id){
-        return friendService.getById(id);
+        return friendService.getFriendById(id);
     }
     @PutMapping(path = {"{id}/update", "{id}"})
     Friend updateFriend(@PathVariable String id, @RequestBody Friend friend){
     if (!friend.id().equals(id)) {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The id in the url does not match the request body's id");
     }
-        return friendService.update(friend);
+        return friendService.updateFriend(friend);
     }
     @DeleteMapping("{id}")
     void deleteFriend(@PathVariable String id) {
-        friendService.delete(id);
+        friendService.deleteFriend(id);
     }
 }

@@ -13,10 +13,10 @@ import java.util.UUID;
 public class FriendService {
     private final FriendRepository friendRepository;
     private final CloudinaryService cloudinaryService;
-    List<Friend> getAll(){
+    public List<Friend> getAllFriends(){
         return friendRepository.findAll();
     }
-    public Friend save(Friend friend, MultipartFile image) throws IOException{
+    public Friend addFriend(Friend friend, MultipartFile image) throws IOException{
         String id = UUID.randomUUID().toString();
         Friend friendToSave = friend.withId(id);
 
@@ -26,15 +26,15 @@ public class FriendService {
         }
         return friendRepository.save(friendToSave);
     }
-    public Friend getById(String id) {
+    public Friend getFriendById(String id) {
         return friendRepository.findById(id).orElseThrow();
     }
 
-    public Friend update(Friend friend) {
+    public Friend updateFriend(Friend friend) {
         return friendRepository.save(friend);
     }
 
-    public void delete(String id) {
+    public void deleteFriend(String id) {
         friendRepository.deleteById(id);
     }
 }
