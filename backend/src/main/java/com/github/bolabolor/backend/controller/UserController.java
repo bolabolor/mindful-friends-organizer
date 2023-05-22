@@ -1,5 +1,5 @@
-package com.github.bolabolor.backend.security;
-
+package com.github.bolabolor.backend.controller;
+import com.github.bolabolor.backend.model.MongoUserDTO;
 import com.github.bolabolor.backend.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
-
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -29,8 +28,6 @@ public class UserController {
         userService.signupMongoUser(mongoUserDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
-
 
     @PostMapping("/login")
     public String login(){

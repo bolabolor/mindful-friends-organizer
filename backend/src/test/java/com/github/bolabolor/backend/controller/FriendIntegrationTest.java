@@ -1,7 +1,7 @@
-package com.github.bolabolor.backend;
+package com.github.bolabolor.backend.controller;
 import com.cloudinary.Cloudinary;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.bolabolor.backend.friend.FriendRepository;
+import com.github.bolabolor.backend.repository.FriendRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

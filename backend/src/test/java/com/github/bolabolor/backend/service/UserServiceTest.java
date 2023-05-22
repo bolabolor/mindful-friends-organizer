@@ -1,16 +1,12 @@
-package com.github.bolabolor.backend;
-
-import com.github.bolabolor.backend.security.MongoUserDTO;
-import com.github.bolabolor.backend.security.MongoUser;
-import com.github.bolabolor.backend.security.MongoUserRepository;
-import com.github.bolabolor.backend.security.MongoUsersDetailsService;
-import com.github.bolabolor.backend.service.UserService;
+package com.github.bolabolor.backend.service;
+import com.github.bolabolor.backend.model.MongoUserDTO;
+import com.github.bolabolor.backend.model.MongoUser;
+import com.github.bolabolor.backend.repository.MongoUserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;

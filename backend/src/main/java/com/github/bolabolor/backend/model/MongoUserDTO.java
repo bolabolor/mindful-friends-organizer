@@ -1,6 +1,4 @@
-package com.github.bolabolor.backend.security;
-
-import com.github.bolabolor.backend.friend.Friend;
+package com.github.bolabolor.backend.model;
 
 import java.util.List;
 

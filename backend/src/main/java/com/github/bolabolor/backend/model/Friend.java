@@ -1,4 +1,4 @@
-package com.github.bolabolor.backend.friend;
+package com.github.bolabolor.backend.model;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

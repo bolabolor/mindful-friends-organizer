@@ -1,5 +1,7 @@
-package com.github.bolabolor.backend.friend;
+package com.github.bolabolor.backend.controller;
 
+import com.github.bolabolor.backend.model.Friend;
+import com.github.bolabolor.backend.service.FriendService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

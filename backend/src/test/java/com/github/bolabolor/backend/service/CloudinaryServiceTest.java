@@ -1,14 +1,10 @@
-package com.github.bolabolor.backend;
-
+package com.github.bolabolor.backend.service;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Uploader;
-import com.github.bolabolor.backend.friend.CloudinaryService;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockMultipartFile;
-
 import java.io.IOException;
 import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -25,10 +21,8 @@ void uploadImage() throws IOException {
 
     when(cloudinary.uploader()).thenReturn(uploader);
     when(uploader.upload(any(), any())).thenReturn(Map.of("url", "test-url"));
-
     //WHEN
     String actual = cloudinaryService.uploadImage(mockMultipartFile);
-
     //THEN
     verify(uploader).upload(any(), any());
     assertEquals("test-url", actual);

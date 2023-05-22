@@ -1,23 +1,23 @@
-package com.github.bolabolor.backend.friend;
-
+package com.github.bolabolor.backend.service;
+import com.github.bolabolor.backend.model.Friend;
+import com.github.bolabolor.backend.repository.FriendRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
 public class FriendService {
     private final FriendRepository friendRepository;
     private final CloudinaryService cloudinaryService;
+    private final IdService idService;
     public List<Friend> getAllFriends(){
         return friendRepository.findAll();
     }
     public Friend addFriend(Friend friend, MultipartFile image) throws IOException{
-        String id = UUID.randomUUID().toString();
+        String id = idService.createRandomId();
         Friend friendToSave = friend.withId(id);
 
         if (image != null) {

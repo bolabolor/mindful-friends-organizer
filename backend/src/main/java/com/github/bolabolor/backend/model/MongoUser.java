@@ -1,6 +1,5 @@
-package com.github.bolabolor.backend.security;
+package com.github.bolabolor.backend.model;
 
-import com.github.bolabolor.backend.friend.Friend;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
