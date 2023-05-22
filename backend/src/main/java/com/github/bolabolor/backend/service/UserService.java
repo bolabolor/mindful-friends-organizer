@@ -1,7 +1,7 @@
 package com.github.bolabolor.backend.service;
 import com.github.bolabolor.backend.model.MongoUserDTO;
-import com.github.bolabolor.backend.security.MongoUser;
-import com.github.bolabolor.backend.security.MongoUserRepository;
+import com.github.bolabolor.backend.model.MongoUser;
+import com.github.bolabolor.backend.repository.MongoUserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +22,7 @@ public class UserService {
         }
             
         String encodedPassword = encoder.encode(mongoUserDTO.password());
-        MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword);
+        MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, mongoUserDTO.friends());
         return mongoUserRepository.save(encodedUser);
   
     }

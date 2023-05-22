@@ -1,16 +1,13 @@
-package com.github.bolabolor.backend;
-
+package com.github.bolabolor.backend.service;
 import com.github.bolabolor.backend.model.MongoUserDTO;
-import com.github.bolabolor.backend.security.MongoUser;
-import com.github.bolabolor.backend.security.MongoUserRepository;
-import com.github.bolabolor.backend.security.MongoUsersDetailsService;
-import com.github.bolabolor.backend.service.UserService;
+import com.github.bolabolor.backend.model.MongoUser;
+import com.github.bolabolor.backend.repository.MongoUserRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
+import java.util.Collections;
 import java.util.Optional;
 import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -27,10 +24,10 @@ class UserServiceTest {
     @Test
     void expectSignupMongoUser_failed() {
         MongoUserDTO mongoUserDTO = new MongoUserDTO(UUID.randomUUID().toString(),
-                "username", "password");
+                "username", "password", Collections.emptyList());
         String encodedPassword = encoder.encode(mongoUserDTO.password());
         MongoUser encodedUser = new MongoUser(mongoUserDTO.username(),
-                encodedPassword);
+                encodedPassword, Collections.emptyList());
         when(encoder.encode("password")).thenReturn("password");
         when(mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username())).thenReturn(Optional.of(encodedUser));
 
@@ -41,10 +38,10 @@ class UserServiceTest {
     void expectSignupMongoUser_successfull() {
         //Given
         MongoUserDTO mongoUserDTO = new MongoUserDTO(UUID.randomUUID().toString(),
-                "username", "password");
+                "username", "password", Collections.emptyList());
 
         String encodedPassword = encoder.encode(mongoUserDTO.password());
-        MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword);
+        MongoUser encodedUser = new MongoUser(mongoUserDTO.username(), encodedPassword, Collections.emptyList());
 
         when(mongoUserRepository.findMongoUserByUsername(mongoUserDTO.username())).thenReturn(Optional.empty());
         when(mongoUserRepository.save(encodedUser)).thenReturn(encodedUser);
@@ -63,7 +60,7 @@ class UserServiceTest {
 
         MongoUser expected = new MongoUser(
                 "test1",
-                username, password
+                username, password, Collections.emptyList()
         );
         when(mongoUserRepository.findMongoUserByUsername(username)).thenReturn(Optional.of(expected));
         // WHEN

@@ -1,18 +1,17 @@
-package com.github.bolabolor.backend;
-
-import com.github.bolabolor.backend.security.MongoUser;
-import com.github.bolabolor.backend.security.MongoUserRepository;
-import com.github.bolabolor.backend.security.MongoUsersDetailsService;
+package com.github.bolabolor.backend.service;
+import com.github.bolabolor.backend.model.Friend;
+import com.github.bolabolor.backend.model.MongoUser;
+import com.github.bolabolor.backend.repository.MongoUserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -23,6 +22,11 @@ class MongoUserDetailsServiceTest {
     private MongoUsersDetailsService detailsService;
     @Mock
     private MongoUserRepository mongoUserRepository;
+    private List<Friend> createFriendList(){
+        List<Friend> friends = new ArrayList<>();
+        friends.add(new Friend("1", "Lukas", "https://www.google.de"));
+        return friends;
+    }
 
     @BeforeEach
     void setup() {
@@ -32,10 +36,11 @@ class MongoUserDetailsServiceTest {
     @Test
     void expectSuccessfulUsername() {
         //Given
+        List<Friend> friends = createFriendList();
         MongoUser mongoUser = new MongoUser(
                 UUID.randomUUID().toString(),
                 "username",
-                "password");
+                "password", friends);
         when(mongoUserRepository.findMongoUserByUsername(mongoUser.username())).thenReturn(Optional.of(mongoUser));
         //When
         detailsService.loadUserByUsername(mongoUser.username());

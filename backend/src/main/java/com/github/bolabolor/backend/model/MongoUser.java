@@ -1,9 +1,11 @@
-package com.github.bolabolor.backend.security;
+package com.github.bolabolor.backend.model;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.List;
 
 @Document("mongoUsers")
 public record MongoUser(
@@ -14,9 +16,10 @@ public record MongoUser(
         String username,
         @NotBlank
         @Size(min=4, max=60)
-        String password
+        String password,
+        List<Friend> friends
 ) {
-        public MongoUser(String username, String password) {
-                this(null, username, password);
+        public MongoUser(String username, String password, List<Friend> friends) {
+                this(null, username, password, friends);
         }
 }

@@ -1,5 +1,7 @@
-package com.github.bolabolor.backend.security;
+package com.github.bolabolor.backend.service;
 
+import com.github.bolabolor.backend.model.MongoUser;
+import com.github.bolabolor.backend.repository.MongoUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
