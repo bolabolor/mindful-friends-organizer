@@ -1,4 +1,4 @@
-import {Friend} from "../model/Friend";
+import {Friend} from "../../model/Friend";
 import FriendCard from "./FriendCard";
 
 type FriendGalleryProps = {

@@ -1,4 +1,4 @@
-import {Friend} from "../model/Friend";
+import {Friend} from "../../model/Friend";
 
 type FriendCardProps = {
     friend : Friend
