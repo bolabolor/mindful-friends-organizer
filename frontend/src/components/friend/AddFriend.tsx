@@ -7,9 +7,11 @@ type AddFriendProps = {
     addFriend: (newFriend: NewFriend , image: File | undefined) => void
 }
 export default function AddFriend(props: AddFriendProps) {
+
     const [name, setName] = useState("")
-    const [image, setImage] = useState<File | undefined>();
+    const [image, setImage] = useState<File>();
     const navigate = useNavigate();
+
     function onSaveFriend(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const newFriend: NewFriend = {id: "unique-id", name: name, url: ""}

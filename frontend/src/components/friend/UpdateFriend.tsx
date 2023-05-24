@@ -1,8 +1,8 @@
 import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import "./AddFriend.css"
-import {Friend} from "../model/Friend";
 import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
+import {Friend} from "../../model/Friend";
 
 type UpdateFriendProps = {
     updateFriend: (newFriend: Friend) => void
@@ -51,7 +51,6 @@ export default function UpdateFriend(props: UpdateFriendProps) {
             )
         }
     }
-
 
     return (
         <div className="updateFriend">

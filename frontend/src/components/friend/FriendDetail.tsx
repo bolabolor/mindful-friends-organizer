@@ -2,11 +2,11 @@ import React, {useEffect, useState} from "react";
 import './FriendDetail.css';
 import {useParams} from "react-router-dom";
 import axios from "axios";
-import {Friend} from "../model/Friend";
+import {Friend} from "../../model/Friend";
 
 export default function FriendDetail() {
 
-    const [recipe, setFriend] = useState<Friend>()
+    const [friend, setFriend] = useState<Friend>()
     const {id} = useParams<{ id: string }>()
 
     useEffect(() => {
@@ -28,7 +28,7 @@ export default function FriendDetail() {
     return (
         <div className="friend-detail">
             {
-                recipe
+                friend
                     ? <div className="detail-content">
                         <p>{friend.id}</p>
                         <p>{friend.name}</p>

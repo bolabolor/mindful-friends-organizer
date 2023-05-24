@@ -43,6 +43,7 @@ function App() {
     }*/
     function addFriend(friendToAdd: string) {
         const sendFriend: NewFriend = {
+            id : "",
             name: friendToAdd,
             url: ""
         }
@@ -69,7 +70,7 @@ function App() {
     function updateFriend(friend: Friend) {
         axios.put(`/api/friend/${friend.id}`, friend)
             .then((putRecipeResponse) => {
-                setFriend(friends.map(helloFriend => {
+                setFriends(friends.map(helloFriend => {
                     if (helloFriend.id === friend.id) {
                         return putRecipeResponse.data
                     } else {
@@ -90,11 +91,11 @@ function App() {
                     <Route element={<ProtectedRoutes user={user}/>}>
                         <Route path="/friend/:id" element={<FriendDetail/>}/>
                         <Route path='/friend' element={<FriendGallery friends={friends} deleteFriend={deleteFriend} updateFriend={updateFriend}/>}/>
-                    </Route>
-                    <Route path='/friend/update/:id'
-                           element={<UpdateFriend updateFriend={updateFriend}/>}/>
-                    <Route path='/friend/add'
+                        <Route path='/friend/add'
                            element={<AddFriend addFriend={addFriend}/>}/>
+                        <Route path='/friend/update/:id'
+                           element={<UpdateFriend updateFriend={updateFriend}/>}/>
+                    </Route>
                 </Routes>
             </div>
       </BrowserRouter>
