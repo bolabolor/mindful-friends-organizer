@@ -12,19 +12,15 @@ import java.util.List;
 public class FriendService {
     private final FriendRepository friendRepository;
     private final CloudinaryService cloudinaryService;
-    private final IdService idService;
     public List<Friend> getAllFriends(){
         return friendRepository.findAll();
     }
     public Friend addFriend(Friend friend, MultipartFile image) throws IOException{
-        String id = idService.createRandomId();
-        Friend friendToSave = friend.withId(id);
-
         if (image != null) {
             String url = cloudinaryService.uploadImage(image);
-            friendToSave = friendToSave.withUrl(url);
+            friend = friend.withUrl(url);
         }
-        return friendRepository.save(friendToSave);
+        return friendRepository.save(friend);
     }
     public Friend getFriendById(String id) {
         return friendRepository.findById(id).orElseThrow();

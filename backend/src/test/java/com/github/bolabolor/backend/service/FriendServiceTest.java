@@ -18,8 +18,7 @@ class FriendServiceTest {
 
     FriendRepository friendRepository = mock(FriendRepository.class);
     CloudinaryService cloudinaryService = mock(CloudinaryService.class);
-    final IdService idService = mock(IdService.class);
-    FriendService friendService = new FriendService(friendRepository, cloudinaryService, idService);
+    FriendService friendService = new FriendService(friendRepository, cloudinaryService);
 
 
     @Test
@@ -38,7 +37,7 @@ class FriendServiceTest {
     void getFriendById() {
 
         String id = "1234";
-        Friend expected = new Friend("");
+        Friend expected = new Friend("123", "Water", "");
         when(friendRepository.findById(id)).thenReturn(Optional.of(expected));
         // WHEN
         Friend actual = friendService.getFriendById(id);
@@ -51,14 +50,14 @@ class FriendServiceTest {
     void addFriend() throws IOException {
         //GIVEN
         MultipartFile file = Mockito.mock(MultipartFile.class);
-        Friend friend = new Friend( "Air");
+        Friend friend = new Friend( "123", "Water", "");
         Mockito.when(friendRepository.save(friend)).thenReturn(friend);
         // WHEN
         Friend actual = friendService.addFriend(friend, file);
 
         //THEN
         verify(friendRepository).save(friend);
-        verify(idService).createRandomId();
+        //verify(idService).createRandomId();
         assertEquals(friend, actual);
     }
 
