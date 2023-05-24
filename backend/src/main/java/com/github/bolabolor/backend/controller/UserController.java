@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/users")
 public class UserController {
     private final UserService userService;
+    String loggedInUser;
+
     public UserController(UserService userService) {
         this.userService = userService;
     }
@@ -31,6 +33,11 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(){
+        loggedInUser = SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getName();
+
         return SecurityContextHolder
                 .getContext()
                 .getAuthentication()

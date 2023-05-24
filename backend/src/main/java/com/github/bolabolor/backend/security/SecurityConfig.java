@@ -27,7 +27,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .httpBasic().and()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/users/signup","/api/users/me").permitAll()
+                .requestMatchers("/api/users/signup","/api/users/me", "/api/friend").permitAll()
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
                 .and().build();

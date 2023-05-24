@@ -4,9 +4,6 @@ import com.github.bolabolor.backend.repository.FriendRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,8 +14,7 @@ import static org.mockito.Mockito.when;
 class FriendServiceTest {
 
     FriendRepository friendRepository = mock(FriendRepository.class);
-    CloudinaryService cloudinaryService = mock(CloudinaryService.class);
-    FriendService friendService = new FriendService(friendRepository, cloudinaryService);
+    FriendService friendService = new FriendService(friendRepository);
 
 
     @Test
@@ -47,17 +43,15 @@ class FriendServiceTest {
     }
 
     @Test
-    void addFriend() throws IOException {
+    void addFriend() {
         //GIVEN
-        MultipartFile file = Mockito.mock(MultipartFile.class);
         Friend friend = new Friend( "123", "Water", "");
         Mockito.when(friendRepository.save(friend)).thenReturn(friend);
         // WHEN
-        Friend actual = friendService.addFriend(friend, file);
+        Friend actual = friendService.addFriend(friend);
 
         //THEN
         verify(friendRepository).save(friend);
-        //verify(idService).createRandomId();
         assertEquals(friend, actual);
     }
 

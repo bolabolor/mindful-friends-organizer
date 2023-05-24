@@ -2,14 +2,10 @@ package com.github.bolabolor.backend.controller;
 
 import com.github.bolabolor.backend.model.Friend;
 import com.github.bolabolor.backend.service.FriendService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
-
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -23,8 +19,8 @@ public class FriendController {
         return friendService.getAllFriends();
     }
     @PostMapping
-    Friend addFriend(@RequestPart("data") @Valid Friend friend, @RequestPart(name = "file", required = false) MultipartFile image) throws IOException{
-        return friendService.addFriend(friend, image);
+    Friend addFriend(@RequestBody Friend friend){
+        return friendService.addFriend(friend);
     }
     @GetMapping("{id}")
     Friend getFriendById(@PathVariable String id){

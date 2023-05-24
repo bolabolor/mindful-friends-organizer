@@ -12,7 +12,5 @@ public record Friend (
     String name,
     String url)
 {
-    public Friend withUrl(String url) {
-        return new Friend(id, name, url);
-    }
+
 }

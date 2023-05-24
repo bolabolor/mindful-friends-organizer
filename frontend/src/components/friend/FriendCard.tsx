@@ -13,8 +13,8 @@ export default function FriendCard (props : FriendCardProps) {
         props.deleteFriend(props.friend.id)
     }
     return <div className="friend-circle">
-        <p>{props.friend.id}</p>
-        <p>{props.friend.name}</p>
+        {/*<p>{props.friend.id}</p>
+        <p>{props.friend.name}</p>*/}
         <p>{props.friend.url}</p>
         <button onClick={() => {navigate('/friend/update/' + props.friend.id)}}>Update</button>
         <button onClick={() => {navigate('/friend/' + props.friend.id)}}>Detail</button>

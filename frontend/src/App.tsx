@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import LoginPage from "./security/LoginPage";
@@ -16,7 +16,14 @@ import UpdateFriend from "./components/friend/UpdateFriend";
 function App() {
     const {user, login} = useUser()
     const [friends, setFriends] = useState<Friend[]>([])
-    const loadAllFriends = useCallback(() => {
+
+    useEffect(() => {
+        if (user) {
+            loadAllFriends();
+        } //eslint-disable-next-line
+    }, [user, loadAllFriends]);
+
+    /*const loadAllFriends = useCallback(() => {
         axios
             .get("/api/friend")
             .then((response) => {
@@ -25,25 +32,24 @@ function App() {
             .catch((error) => {
                 console.error(error);
             });
-    }, []);
+    }, []);*/
 
-    useEffect(() => {
-        if (user) {
-            loadAllFriends();
-        } //eslint-disable-next-line
-    }, [user, loadAllFriends]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    function loadAllFriends() {
+        axios.get("/api/friend")
+            .then((getAllFriendsResponse) => {setFriends(getAllFriendsResponse.data)})
+            .catch((error) => {console.error(error)})
+    }
 
-    function addFriend() {
-        const sendFriend: NewFriend = {
-            name: "",
-            url: ""
-        }
-        axios.post("/api/friend", sendFriend)
+    function addFriend(newFriend: NewFriend) {
+        axios.post("/api/friend", newFriend)
             .then((addFriendResponse) => {
+                console.log(friends);
+                console.log(addFriendResponse);
                 setFriends([...friends, addFriendResponse.data])
             })
             .catch((error) => {
-                error("Unknown Error, try again later! " + error.response.statusText, {autoClose: 10000})
+                console.log(error)
             })
     }
 
@@ -59,10 +65,10 @@ function App() {
 
     function updateFriend(friend: Friend) {
         axios.put(`/api/friend/${friend.id}`, friend)
-            .then((putRecipeResponse) => {
+            .then((putFriendResponse) => {
                 setFriends(friends.map(helloFriend => {
                     if (helloFriend.id === friend.id) {
-                        return putRecipeResponse.data
+                        return putFriendResponse.data
                     } else {
                         return helloFriend
                     }
@@ -73,7 +79,7 @@ function App() {
 
   return (
       <BrowserRouter>
-            <Header user={user}/>
+           <Header user={user}/>
             <div className="App">
                 <Routes>
                     <Route path='/signup' element={<SignupPage/>}/>
