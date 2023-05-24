@@ -3,3 +3,8 @@ export type Friend = {
     name: string,
     url: string
 }
+
+export type NewFriend = {
+    name: string,
+    url: string
+}

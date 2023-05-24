@@ -1,0 +1,51 @@
+.header{
+    display: flex;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+}
+
+.header_img {
+    width: 70px;
+}
+
+.header_title {
+    font-weight: 900;
+    font-size: 50px;
+    font-family: 'Sedgwick Ave Display', cursive;
+    color: darkseagreen;
+}
+
+.headerLinkLe{
+    padding: 35px;
+    font-size: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.headerLinkRi{
+    padding: 35px;
+    font-size: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+a:hover {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.headerNav {
+    font-weight: bold;
+    cursor: pointer;
+    color: #61dafb;
+}
+
+.headerNav:link {
+    background-color: yellow;
+}
+

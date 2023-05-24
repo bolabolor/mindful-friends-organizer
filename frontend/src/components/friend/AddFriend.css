@@ -1,0 +1,20 @@
+.addFriend {
+    padding: 30px;
+}
+
+.addFriend input{
+    padding: 15px;
+    border-radius: 5px;
+    margin: 0;
+    border: solid 3px black;
+}
+
+.addButton {
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border: double 3px transparent;
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+}
