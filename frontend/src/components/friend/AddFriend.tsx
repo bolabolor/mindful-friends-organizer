@@ -4,18 +4,17 @@ import {useNavigate} from "react-router-dom";
 import {NewFriend} from "../../model/Friend";
 
 type AddFriendProps = {
-    addFriend: (newFriend: NewFriend , image: File | undefined) => void
+    addFriend: (newFriend: NewFriend) => void
 }
 export default function AddFriend(props: AddFriendProps) {
 
     const [name, setName] = useState("")
-    const [image, setImage] = useState<File>();
     const navigate = useNavigate();
 
     function onSaveFriend(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         const newFriend: NewFriend = {name: name, url: ""}
-        props.addFriend(newFriend, image)
+        props.addFriend(newFriend)
         navigate("/friend")
     }
 
@@ -29,15 +28,6 @@ export default function AddFriend(props: AddFriendProps) {
                           onChange={(event) => {
                               setName(event.target.value)
                           }}/>
-                    <input type="file"
-                           className="imagefile"
-                           placeholder="a picture of your friend"
-                           onChange={(event) => {
-                               if (event.target.files) {
-                                   setImage(event.target.files[0])
-                               }
-                           }
-                           }/>
                 </div>
                 <br/>
                 <button className="addButton">save Friend</button>

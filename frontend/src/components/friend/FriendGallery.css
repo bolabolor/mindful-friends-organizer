@@ -23,7 +23,7 @@
     background: darkseagreen;
 }
 
-.recipe-gallery{
+.friend-gallery{
     display: flex;
     gap: 12px;
     border: none;
@@ -31,6 +31,6 @@
     justify-content: space-around;
 }
 
-.recipe-gallery_column {
-    border: 2px solid red;
+.friend-gallery_column {
+    border: blueviolet;
 }
