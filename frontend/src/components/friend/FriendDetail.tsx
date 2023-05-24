@@ -12,7 +12,7 @@ export default function FriendDetail() {
     useEffect(() => {
         if (id) {
             loadFriendById(id)
-        }
+        } //eslint-disable-next-line
     }, [id])
 
     function loadFriendById(id: string) {

@@ -30,7 +30,7 @@ function App() {
     useEffect(() => {
         if (user) {
             loadAllFriends();
-        }
+        } //eslint-disable-next-line
     }, [user, loadAllFriends]);
 
     function addFriend() {

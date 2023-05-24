@@ -17,7 +17,7 @@ export default function UpdateFriend(props: UpdateFriendProps) {
     useEffect(() => {
         if (id) {
             loadFriendById(id)
-        }
+        } //eslint-disable-next-line
     }, [id])
 
     function loadFriendById(id: string) {
