@@ -12,7 +12,7 @@ export default function FriendGallery(props: FriendGalleryProps) {
                 <div>
                     <h2>All Friends</h2>
                     {
-                        props.friends.map((friend)=><FriendCard key={friend.id} friend={friend}
+                        props.friends?.map((friend)=><FriendCard key={friend.id} friend={friend}
                                                                deleteFriend={props.deleteFriend}
                                                                updateFriend={props.updateFriend}/>)}
                 </div>
