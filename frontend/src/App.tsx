@@ -23,17 +23,6 @@ function App() {
         } //eslint-disable-next-line
     }, [user, loadAllFriends]);
 
-    /*const loadAllFriends = useCallback(() => {
-        axios
-            .get("/api/friend")
-            .then((response) => {
-                setFriends(response.data.results);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }, []);*/
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     function loadAllFriends() {
         axios.get("/api/friend")
