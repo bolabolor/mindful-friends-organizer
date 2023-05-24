@@ -14,7 +14,7 @@ export default function AddFriend(props: AddFriendProps) {
 
     function onSaveFriend(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        const newFriend: NewFriend = {id: "unique-id", name: name, url: ""}
+        const newFriend: NewFriend = {name: name, url: ""}
         props.addFriend(newFriend, image)
         navigate("/friend")
     }

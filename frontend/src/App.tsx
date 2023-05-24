@@ -33,23 +33,13 @@ function App() {
         }
     }, [user, loadAllFriends]);
 
-    /*function loadAllFriends() {
-        axios.get("/api/friend")
-            .then(r => {setFriends(r.data.results)
-            })
-            .catch((reason) => {
-                console.error(reason)
-            })
-    }*/
-    function addFriend(friendToAdd: string) {
+    function addFriend() {
         const sendFriend: NewFriend = {
-            id : "",
-            name: friendToAdd,
+            name: "",
             url: ""
         }
         axios.post("/api/friend", sendFriend)
             .then((addFriendResponse) => {
-
                 setFriends([...friends, addFriendResponse.data])
             })
             .catch((error) => {

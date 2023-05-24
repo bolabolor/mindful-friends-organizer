@@ -5,7 +5,6 @@ export type Friend = {
 }
 
 export type NewFriend = {
-    id: string,
     name: string,
     url: string
 }
